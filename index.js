@@ -5,7 +5,7 @@ var client = function(details,format){
 							"Fk-Affiliate-Token":details.token
 		};
 
-	this.getProductsFeed = function(){
+	this.getProductsFeedListing = function(){
 		return new Promise(function(resolve,reject){
 				var url = (format=='json')?"https://affiliate-api.flipkart.net/affiliate/api/"+details.trackingId+".json":"https://affiliate-api.flipkart.net/affiliate/api/"+details.trackingId+".xml";
 				request({
@@ -17,10 +17,10 @@ var client = function(details,format){
 			});
 		}
 
-	this.getCategoryFeed = function(categoryUrl){
+	this.getProductsFeed = function(productFeedUrl){
 		return new Promise(function(resolve,reject){
 				request({
-					url : categoryUrl,
+					url : productFeedUrl,
 					headers:headers,
 				},function(error,response,body){
 					resolve(body);
