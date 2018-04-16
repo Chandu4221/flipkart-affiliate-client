@@ -1,0 +1,35 @@
+{
+  "name": "flipkart-api-affiliate-client",
+  "version": "1.0.0",
+  "description": "unofficial version of flipkart affiliate api using promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chandu4221/flipkart-affiliate-client.git"
+  },
+  "keywords": [
+    "flipkart",
+    "flipkart",
+    "affiliate",
+    "flipkart",
+    "api",
+    "flipkart",
+    "affiliate",
+    "marketing",
+    "flipkart",
+    "affiliate",
+    "client"
+  ],
+  "author": "Chandu4221",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chandu4221/flipkart-affiliate-client/issues"
+  },
+  "homepage": "https://github.com/Chandu4221/flipkart-affiliate-client#readme",
+  "dependencies": {
+    "request": "^2.85.0"
+  }
+}
