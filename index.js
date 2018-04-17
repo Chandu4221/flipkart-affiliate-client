@@ -4,7 +4,6 @@ var client = function (details, format) {
 		"Fk-Affiliate-Id": details.trackingId,
 		"Fk-Affiliate-Token": details.token
 	};
-
 	this.getProductsFeedListing = function () {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/api/" + details.trackingId + ".json" : "https://affiliate-api.flipkart.net/affiliate/api/" + details.trackingId + ".xml";
@@ -17,13 +16,13 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
 	this.getProductsFeed = function (categoryUrl) {
 		return new Promise(function (resolve, reject) {
 			request({
@@ -35,13 +34,13 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
 	this.getTopSellingProduct = function (category) {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/topFeeds/" + details.trackingId + "/category/" + category + ".json" : "https://affiliate-api.flipkart.net/affiliate/1.0/topFeeds/" + details.trackingId + "/category/" + category + ".xml";
@@ -54,13 +53,13 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
 	this.doKeywordSearch = function (keyword, limit) {
 			var count = limit || 5;
 			return new Promise(function (resolve, reject) {
@@ -75,6 +74,7 @@ var client = function (details, format) {
 					else {
 						resolve({
 							status: response.statusCode,
+							error: getStatusError(response.statusCode),
 							body: body
 						});
 					}
@@ -82,7 +82,6 @@ var client = function (details, format) {
 
 			});
 		},
-
 		this.doIdSearch = function (id) {
 			return new Promise(function (resolve, reject) {
 				var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/product.json?id=" + id : "https://affiliate-api.flipkart.net/affiliate/1.0/product.xml?id=" + id;
@@ -96,13 +95,13 @@ var client = function (details, format) {
 					else {
 						resolve({
 							status: response.statusCode,
+							error: getStatusError(response.statusCode),
 							body: body
 						});
 					}
 				});
 			});
 		}
-
 	this.getAllOffers = function () {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/offers/v1/all/json" : "https://affiliate-api.flipkart.net/affiliate/offers/v1/all/xml"
@@ -115,15 +114,13 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
-
-
 	this.getDealsOfTheDay = function () {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/offers/v1/dotd/json" : "https://affiliate-api.flipkart.net/affiliate/offers/v1/dotd/xml";
@@ -136,13 +133,13 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
 	this.getOrdersReport = function (info) {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/report/orders/detail/json?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status + "&offset=" + info.offset : "https://affiliate-api.flipkart.net/affiliate/report/orders/detail/xml?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status + "&offset=" + info.offset;
@@ -156,13 +153,13 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
 	this.getAppInstallReport = function (info) {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/v1/appInstall/json?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status : "https://affiliate-api.flipkart.net/affiliate/v1/appInstall/xml?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status;
@@ -176,14 +173,37 @@ var client = function (details, format) {
 				else {
 					resolve({
 						status: response.statusCode,
+						error: getStatusError(response.statusCode),
 						body: body
 					});
 				}
 			});
 		});
 	}
-
 	return this;
+}
+
+var getStatusError = function (statusCode) {
+	if (statusCode == 400)
+		return "Error: Bad request";
+	else if (statusCode == 401)
+		return "Error : Unauthorized. Affiliate Id or Token InCorrect";
+	else if (statusCode == 403)
+		return "Error: Forbidden";
+	else if (statusCode == 404)
+		return "Error: Not Found"
+	else if (statusCode == 500)
+		return "Error: Internal Server Error";
+	else if (statusCode == 503)
+		return "Service unavailable";
+	else if (statusCode == 599)
+		return "Connection timed out";
+	else if(statusCode==410)
+		return "resource requested is no longer available";
+	else if (statusCode == 200)
+		return null;
+	else 
+		return null;
 }
 
 module.exports = client;
