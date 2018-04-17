@@ -12,18 +12,32 @@ var client = function (details, format) {
 				url: url,
 				headers: headers,
 			}, function (error, response, body) {
-				resolve(body);
+				if (error)
+					reject(error);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
 
-	this.getProductsFeed = function (productFeedUrl) {
+	this.getProductsFeed = function (categoryUrl) {
 		return new Promise(function (resolve, reject) {
 			request({
-				url: productFeedUrl,
+				url: categoryUrl,
 				headers: headers,
 			}, function (error, response, body) {
-				resolve(body);
+				if (error)
+					reject(error);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
@@ -37,8 +51,12 @@ var client = function (details, format) {
 			}, function (error, response, body) {
 				if (error)
 					reject(error);
-				else
-					resolve(body);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
@@ -54,8 +72,12 @@ var client = function (details, format) {
 				}, function (error, response, body) {
 					if (error)
 						reject(error);
-					else
-						resolve(body);
+					else {
+						resolve({
+							status: response.statusCode,
+							body: body
+						});
+					}
 				});
 
 			});
@@ -71,8 +93,12 @@ var client = function (details, format) {
 				}, function (error, response, body) {
 					if (error)
 						reject(error);
-					else
-						resolve(body);
+					else {
+						resolve({
+							status: response.statusCode,
+							body: body
+						});
+					}
 				});
 			});
 		}
@@ -86,8 +112,12 @@ var client = function (details, format) {
 			}, function (error, response, body) {
 				if (error)
 					reject(error);
-				else
-					resolve(body);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
@@ -103,8 +133,12 @@ var client = function (details, format) {
 			}, function (error, response, body) {
 				if (error)
 					reject(error);
-				else
-					resolve(body);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
@@ -119,8 +153,12 @@ var client = function (details, format) {
 			}, function (error, response, body) {
 				if (error)
 					reject(error);
-				else
-					resolve(body);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
@@ -135,8 +173,12 @@ var client = function (details, format) {
 			}, function (error, response, body) {
 				if (error)
 					reject(error);
-				else
-					resolve(body);
+				else {
+					resolve({
+						status: response.statusCode,
+						body: body
+					});
+				}
 			});
 		});
 	}
