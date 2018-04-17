@@ -36,9 +36,11 @@ Usage Examples
 Get the Product Feed of The API
 ```
 fkClient.getProductsFeedListing().then(function(value){
-	console.log(value);
+	console.log(value); //object with status and bodyContent
 });
 ```
+
+
 ### Product Feed
 Get the Product Feed Of The API.
 
@@ -46,7 +48,7 @@ Takes Url as the parameter obtained from the Products Feed Listing
 
 ```
 fkClient.getProductsFeed(Url).then(function(value){
-		console.log(value);
+		console.log(value); //object with status and bodyContent
 });
 ```
 
@@ -62,7 +64,7 @@ limit (by default the limt is set to 5)
 
 ```
 fkClient.doKeywordSearch("mobiles",10).then(function(value){
-		res.send(value);
+		res.send(value); //object with status and bodyContent
 });
 ```
 
@@ -73,31 +75,31 @@ doIdSearch(productId) takes "ProductId" as a parameter.
 
 ```
 fkClient.doIdSearch(productId).then(function(value){
-		console.log(value);
+		console.log(value); //object with status and bodyContent
 });
 ```
 
-### get All Offers
+### Get All Offers
 Get All Offers
 
 
 ```
 fkClient.getAllOffers().then(function(value){
-		console.log(value);
+		console.log(value); //object with status and bodyContent
 });
 ```
 
 
-### get Deals of the Day
+### Get Deals of the Day
 Get Deals of the Day
 
 ```
 fkClient.getDealsOfTheDay().then(function(value){
-		console.log(value);
+		console.log(value); //object with status and bodyContent
 });
 ```
 
-### get Orders Report
+### Get Orders Report
 Get orders report based on start_date , end_date, offset and status
 
 getOrdersReport(obj) takes an object as a parameter
@@ -114,11 +116,11 @@ object Structure
 
 ```
 fkClient.getOrdersReport(obj).then(function(value){
-		console.log(value);
+		console.log(value); //object with status and bodyContent
 });
 ```
 
-### get App Install Report
+### Get App Install Report
 Get App Install Report based on start_date, end_date and status
 
 getAppInstallReport(obj) takes object as a parameter
@@ -133,6 +135,6 @@ Object Structure
 ```
 ```
 fkClient.getAppInstallReport(obj).then(function(value){
-		console.log(value);
+		console.log(value); //object with status and bodyContent
 });
 ```
