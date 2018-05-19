@@ -1,8 +1,8 @@
-# Flipkart API Affiliate Client
+[![NPM](https://nodei.co/npm/flipkart-api-affiliate-client.png)](https://nodei.co/npm/flipkart-api-affiliate-client/)
+
+# Flipkart Affiliate Client for API Version 1.0 
 
 un-official client for [Flipkart Affiliates API](https://affiliate.flipkart.com/api-docs/)
-
-## Flipkart Affiliate API Client
 
 ### Prerequisites
 
