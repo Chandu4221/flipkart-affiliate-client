@@ -1,9 +1,8 @@
 var client = require('../index');
-var auth_details = require('../auth_details');
 var assert = require('assert');
 var fkClient = client({
-    trackingId:auth_details.trackingId,
-    token:auth_details.token,
+    trackingId:process.env.trackingId,
+    token:process.env.token,
 },"json");
 
 
