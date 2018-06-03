@@ -185,25 +185,25 @@ var client = function (details, format) {
 
 var getStatusError = function (statusCode) {
 	if (statusCode == 400)
-		return "Error: Bad request";
+		return "Bad request";
 	else if (statusCode == 401)
-		return "Error : Unauthorized. Affiliate Id or Token InCorrect";
+		return "Unauthorized. Affiliate Id or Token InCorrect";
 	else if (statusCode == 403)
-		return "Error: Forbidden";
+		return "Forbidden";
 	else if (statusCode == 404)
 		return "Error: Not Found"
 	else if (statusCode == 500)
-		return "Error: Internal Server Error";
+		return "Internal Server Error";
 	else if (statusCode == 503)
 		return "Service unavailable";
 	else if (statusCode == 599)
 		return "Connection timed out";
 	else if(statusCode==410)
-		return "resource requested is no longer available";
+		return "Resource requested is no longer available";
 	else if (statusCode == 200)
 		return null;
 	else 
-		return null;
+		return "Unknown Error Occured";
 }
 
 module.exports = client;

@@ -2,7 +2,7 @@
 
 # Flipkart Affiliate Client for API Version 1.0 
 
-un-official client for [Flipkart Affiliates API](https://affiliate.flipkart.com/api-docs/)
+un-official Node.js client for [Flipkart Affiliates API](https://affiliate.flipkart.com/api-docs/)
 
 ### Prerequisites
 
@@ -36,7 +36,7 @@ Usage Examples
 Get the Product Feed of The API
 ```
 fkClient.getProductsFeedListing().then(function(value){
-	console.log(value); //object with status and bodyContent
+	console.log(value); //object with status, error and body
 });
 ```
 
@@ -48,7 +48,7 @@ Takes Url as the parameter obtained from the Products Feed Listing
 
 ```
 fkClient.getProductsFeed(Url).then(function(value){
-		console.log(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
 
@@ -64,7 +64,7 @@ limit (by default the limt is set to 5)
 
 ```
 fkClient.doKeywordSearch("mobiles",10).then(function(value){
-		res.send(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
 
@@ -75,7 +75,7 @@ doIdSearch(productId) takes "ProductId" as a parameter.
 
 ```
 fkClient.doIdSearch(productId).then(function(value){
-		console.log(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
 
@@ -85,7 +85,7 @@ Get All Offers
 
 ```
 fkClient.getAllOffers().then(function(value){
-		console.log(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
 
@@ -95,7 +95,7 @@ Get Deals of the Day
 
 ```
 fkClient.getDealsOfTheDay().then(function(value){
-		console.log(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
 
@@ -116,7 +116,7 @@ object Structure
 
 ```
 fkClient.getOrdersReport(obj).then(function(value){
-		console.log(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
 
@@ -135,6 +135,6 @@ Object Structure
 ```
 ```
 fkClient.getAppInstallReport(obj).then(function(value){
-		console.log(value); //object with status and bodyContent
+		console.log(value); //object with status, error and body
 });
 ```
