@@ -2,7 +2,7 @@ var client = require('../index');
 var assert = require('assert');
 var fkClient = client({
     trackingId:process.env.trackingId,
-    token:process.env.token,
+   token:process.env.token,
 },"json");
 
 
@@ -128,7 +128,7 @@ describe('API Requests',function(){
     describe('getProductsFeed',function(){
         it('should return object with status code 200',function(){
             return new Promise(function(resolve){
-                var Url = "https://affiliate-api.flipkart.net/affiliate/1.0/feeds/krishnacc/category/osp-iko.json?expiresAt=1528083658512&sig=cf1f86e49458d73cae01ced5ca0b7729";
+                var Url = "https://affiliate-api.flipkart.net/affiliate/1.0/feeds/krishnacc/category/7ij.json?expiresAt=1528126675594&sig=7bb7d85b359f04052dffe2cc0a196371";
 
                 fkClient.getProductsFeed(Url).then(function(value){
                     if(value.status != 200){
