@@ -1,10 +1,9 @@
 var client = require("../index");
 var assert = require("assert");
-var fkAuth = require("../fkAuth");
 var fkClient = client(
   {
-    trackingId: process.env.trackingId || fkAuth.trackingId,
-    token: process.env.token || fkAuth.token
+    trackingId: process.env.trackingId,
+    token: process.env.token
   },
   "json"
 );
