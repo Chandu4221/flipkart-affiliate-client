@@ -63,7 +63,7 @@ var client = function (details, format) {
 	this.doKeywordSearch = function (keyword, limit) {
 			var count = limit || 5;
 			return new Promise(function (resolve, reject) {
-				var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=" + keyword + "&resultsCount=" + count : "https://affiliate-api.flipkart.net/affiliate/1.0/search.xml?query=" + keyword + "&resultsCount=" + count;
+				var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=" + keyword + "&resultCount=" + count : "https://affiliate-api.flipkart.net/affiliate/1.0/search.xml?query=" + keyword + "&resultCount=" + count;
 
 				request({
 					url: url,
