@@ -22,7 +22,8 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
+	};
+
 	this.getProductsFeed = function (categoryUrl) {
 		return new Promise(function (resolve, reject) {
 			request({
@@ -40,10 +41,88 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
-	this.getTopSellingProduct = function (category) {
+	};
+
+
+	this.getBooksCategoryFeed = function () {
 		return new Promise(function (resolve, reject) {
-			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/topFeeds/" + details.trackingId + "/category/" + category + ".json" : "https://affiliate-api.flipkart.net/affiliate/1.0/topFeeds/" + details.trackingId + "/category/" + category + ".xml";
+			var url =
+				format == "json"
+					? "https://affiliate-api.flipkart.net/affiliate/1.0/booksApi/" +
+					details.trackingId +
+					".json"
+					: "https://affiliate-api.flipkart.net/affiliate/1.0/booksApi/" +
+					details.trackingId +
+					".xml";
+
+			request(
+				{
+					url: url,
+					headers: headers
+				},
+				function (error, response, body) {
+					if (error) reject(error);
+					else {
+						resolve({
+							status: response.statusCode,
+							error: getStatusError(response.statusCode),
+							body: body
+						});
+					}
+				}
+			);
+		});
+	};
+
+	this.getTopSellingBooks = function (booksCategoryUrl) {
+		return new Promise(function (resolve, reject) {
+			request(
+				{
+					url: booksCategoryUrl,
+					headers: headers
+				},
+				function (error, response, body) {
+					if (error) reject(error);
+					else {
+						resolve({
+							status: response.statusCode,
+							error: getStatusError(response.statusCode),
+							body: body
+						});
+					}
+				}
+			);
+		});
+	};
+
+
+	this.doKeywordSearch = function (keyword, limit) {
+		var count = limit || 5;
+		return new Promise(function (resolve, reject) {
+			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=" + keyword + "&resultCount=" + count : "https://affiliate-api.flipkart.net/affiliate/1.0/search.xml?query=" + keyword + "&resultCount=" + count;
+
+			request({
+				url: url,
+				headers: headers,
+			}, function (error, response, body) {
+				if (error)
+					reject(error);
+				else {
+					resolve({
+						status: response.statusCode,
+						error: getStatusError(response.statusCode),
+						body: body
+					});
+				}
+			});
+
+		});
+	};
+
+	this.doIdSearch = function (id) {
+		return new Promise(function (resolve, reject) {
+			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/product.json?id=" + id : "https://affiliate-api.flipkart.net/affiliate/1.0/product.xml?id=" + id;
+
 			request({
 				url: url,
 				headers: headers,
@@ -59,49 +138,8 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
-	this.doKeywordSearch = function (keyword, limit) {
-			var count = limit || 5;
-			return new Promise(function (resolve, reject) {
-				var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/search.json?query=" + keyword + "&resultCount=" + count : "https://affiliate-api.flipkart.net/affiliate/1.0/search.xml?query=" + keyword + "&resultCount=" + count;
+	};
 
-				request({
-					url: url,
-					headers: headers,
-				}, function (error, response, body) {
-					if (error)
-						reject(error);
-					else {
-						resolve({
-							status: response.statusCode,
-							error: getStatusError(response.statusCode),
-							body: body
-						});
-					}
-				});
-
-			});
-		},
-		this.doIdSearch = function (id) {
-			return new Promise(function (resolve, reject) {
-				var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/1.0/product.json?id=" + id : "https://affiliate-api.flipkart.net/affiliate/1.0/product.xml?id=" + id;
-
-				request({
-					url: url,
-					headers: headers,
-				}, function (error, response, body) {
-					if (error)
-						reject(error);
-					else {
-						resolve({
-							status: response.statusCode,
-							error: getStatusError(response.statusCode),
-							body: body
-						});
-					}
-				});
-			});
-		}
 	this.getAllOffers = function () {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/offers/v1/all/json" : "https://affiliate-api.flipkart.net/affiliate/offers/v1/all/xml"
@@ -120,7 +158,9 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
+	};
+
+
 	this.getDealsOfTheDay = function () {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/offers/v1/dotd/json" : "https://affiliate-api.flipkart.net/affiliate/offers/v1/dotd/xml";
@@ -139,7 +179,9 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
+	};
+
+
 	this.getOrdersReport = function (info) {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/report/orders/detail/json?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status + "&offset=" + info.offset : "https://affiliate-api.flipkart.net/affiliate/report/orders/detail/xml?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status + "&offset=" + info.offset;
@@ -159,7 +201,9 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
+	};
+
+
 	this.getAppInstallReport = function (info) {
 		return new Promise(function (resolve, reject) {
 			var url = (format == 'json') ? "https://affiliate-api.flipkart.net/affiliate/v1/appInstall/json?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status : "https://affiliate-api.flipkart.net/affiliate/v1/appInstall/xml?startDate=" + info.startDate + "&endDate=" + info.endDate + "&status=" + info.status;
@@ -179,7 +223,8 @@ var client = function (details, format) {
 				}
 			});
 		});
-	}
+	};
+
 	return this;
 }
 
@@ -198,11 +243,11 @@ var getStatusError = function (statusCode) {
 		return "Service unavailable";
 	else if (statusCode == 599)
 		return "Connection timed out";
-	else if(statusCode==410)
+	else if (statusCode == 410)
 		return "Resource requested is no longer available";
 	else if (statusCode == 200)
 		return null;
-	else 
+	else
 		return "Unknown Error Occured";
 }
 

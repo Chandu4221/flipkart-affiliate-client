@@ -24,7 +24,7 @@ var client = require('flipkart-api-affiliate-client');
 ```
 Create Client
 ```
-var fkClient = client({
+var fkClient = new client({
 	trackingId:"<YOUR TRACKING ID>",
 	token:"<YOUR TOKEN>",
 },"<FORMAT>");
@@ -53,6 +53,28 @@ fkClient.getProductsFeed(Url).then(function(value){
 		console.log(value); //object with status, error and body
 });
 ```
+
+### Books Category Feed
+Get the Books Category Feed Of The API.
+
+```
+fkClient.getBooksCategoryFeed().then(function(value){
+		console.log(value); //object with status, error and body
+});
+```
+
+
+### Top Selling Books
+Get the Top Selling Books Of The API.
+
+Takes Url as the parameter obtained from the Books Category Feed
+
+```
+fkClient.getTopSellingBooks(Url).then(function(value){
+		console.log(value); //object with status, error and body
+});
+```
+
 
 ### Keyword Search
 
